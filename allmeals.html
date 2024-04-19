@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+   </head>
+   <body>
+      <nav class="bg-rose-500 p-4 text-white flex">
+         <a href="index.html"
+            ><h1 class="text-xl px-2 border-b border-white border-1 mx-6">
+               Search for recipe
+            </h1></a
+         >
+         <a href="allmelas.html"
+            ><h1 class="text-xl px-2 border-b border-white border-1">
+               All meals
+            </h1></a
+         >
+      </nav>
+      <header class="flex justify-center items-center h-[20rem] bg-gray-200">
+         <div class="flex flex-col gap-4 text-center">
+            <h1 class="text-4xl">Filter by first letter</h1>
+            <input id="search-input" type="text" placeholder="Search Recipe" />
+            <button
+               id="search-button"
+               class="px-6 py-2 bg-rose-500 text-white hover:bg-rose-500/80">
+               Lets Cook!
+            </button>
+         </div>
+      </header>
+      <main flex justify-center justify-evenly>
+         <div id="no-search-text" class="text-center">
+            <h1 class="text-2xl">You haven't searched yet!</h1>
+         </div>
+
+         <div
+            id="img-container"
+            class="flex flex-wrap justify-center gap-6 m-5"></div>
+      </main>
+      <script src="allmeals.js"></script>
+   </body>
+</html>
