@@ -16,7 +16,13 @@ searchButton.addEventListener("click", function () {
    }
 
    fetch(mealsByLetter)
-      .then((response) => response.json())
+      .then((response) => {
+         if (!response.ok) {
+            //om datan inte är ok -->
+            throw new Error("något gick fel vid hämtning av data");
+         }
+         return response.json(); //om datan är ok
+      })
       .then((data) => {
          if (data.meals !== null) {
             noSearchText.style.display = "none";
@@ -27,6 +33,7 @@ searchButton.addEventListener("click", function () {
             let mealImgSrc = meal.strMealThumb;
             let mealArea = meal.strArea;
             let mealCategory = meal.strCategory;
+            let mealId = meal.idMeal; //meal ID
 
             let mealContainer = document.createElement("div");
             mealContainer.style.display = "flex";
@@ -37,10 +44,14 @@ searchButton.addEventListener("click", function () {
             mealContainer.style.overflow = "hidden";
             mealContainer.style.transition = "transform 0.3s";
             mealContainer.style.transform = "scale(1)";
+            mealContainer.style.cursor = "pointer";
             imgContainer.appendChild(mealContainer);
 
-            // hover funktion
+            mealContainer.addEventListener("click", () => {
+               window.location.href = `recipe.html?mealId=${mealId}`; //eventhanterare för att öppna sida med recept
+            });
 
+            // hover funktion för mealcontainer
             mealContainer.addEventListener("mouseenter", function () {
                mealContainer.style.transform = "scale(1.05)";
             });
@@ -87,5 +98,8 @@ searchButton.addEventListener("click", function () {
 
             searchInput.value = "";
          });
+      })
+      .catch((error) => {
+         console.error("det uppstod ett fel:", error);
       });
 });
